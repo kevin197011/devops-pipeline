@@ -1,7 +1,8 @@
 package io.kevin197011.cicd
 
-@Grab('mysql:mysql-connector-java:5.1.6')
-@GrabConfig(systemClassLoader=true)
+@Grapes(
+        @Grab(group='org.wisdom-framework', module='mysql-connector-java', version='5.1.34_1')
+)
 
 import groovy.sql.Sql
 
