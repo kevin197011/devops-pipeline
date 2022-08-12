@@ -49,30 +49,30 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
                     }
                 }
             }
+        }
 
-            post {
-                always {
-                    script {
-                        println('always')
-                    }
+        post {
+            always {
+                script {
+                    println('always')
                 }
+            }
 
-                success {
-                    script {
-                        println('success')
-                    }
+            success {
+                script {
+                    println('success')
                 }
+            }
 
-                failure {
-                    script {
-                        println('failure')
-                    }
+            failure {
+                script {
+                    println('failure')
                 }
+            }
 
-                aborted {
-                    script {
-                        println('aborted')
-                    }
+            aborted {
+                script {
+                    println('aborted')
                 }
             }
         }
