@@ -52,6 +52,7 @@ def call() {
                 }
                 referencedParameter('choice1')
             }
+        }
 
         stages {
 
