@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
 '''
 
     def database = new Database('localhost', 'tt', 'devops', '123456', sqlData)
-    def gitlab = new Gitlab()
+    def gitlab = new Gitlab(script: this)
 
     def repoList = [
             'a',
