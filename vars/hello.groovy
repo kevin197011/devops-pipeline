@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-import io.kevin197011.cicd.Message
+
 import io.kevin197011.cicd.TimeUtils
 
 def call() {

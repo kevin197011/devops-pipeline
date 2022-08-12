@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+
+import io.kevin197011.cicd.Gitlab
 import io.kevin197011.cicd.Database
 
 def call() {
@@ -16,6 +18,13 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
 
     def database = new Database('localhost', 'tt', 'devops', '123456', sqlData)
 
+    def repoList = [
+            'a',
+            'b',
+            'c',
+            'd'
+    ]
+
     //pipeline
     pipeline {
         agent any
@@ -28,19 +37,32 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
         }
 
         stages {
-            stage('deploy database') {
+
+            stage('git clone item') {
                 steps {
                     script {
-//                      println(System.getProperty("java.ext.dirs"))
-                        def val = database.execute()
-                        if (val) {
-                            println("sql execute succeed!")
-                        } else {
-                            error("sql execute error!")
+                        repoList.each {
+                            println("git clone item: [${it}]")
                         }
+
+                        Gitlab.gitCloneItem('https://github.com/jenkinsci/file-parameters-plugin.git', '')
                     }
                 }
             }
+
+//            stage('deploy database') {
+//                steps {
+//                    script {
+////                      println(System.getProperty("java.ext.dirs"))
+//                        def val = database.execute()
+//                        if (val) {
+//                            println("sql execute succeed!")
+//                        } else {
+//                            error("sql execute error!")
+//                        }
+//                    }
+//                }
+//            }
 
             stage('deploy app') {
                 steps {
@@ -49,6 +71,31 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
                     }
                 }
             }
+
+            stage('deploy config') {
+                steps {
+                    script {
+                        sleep(10)
+                    }
+                }
+            }
+
+            stage('restart app') {
+                steps {
+                    script {
+                        sleep(10)
+                    }
+                }
+            }
+
+            stage('check list') {
+                steps {
+                    script {
+                        sleep(10)
+                    }
+                }
+            }
+
         }
 
         post {

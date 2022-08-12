@@ -1,6 +1,5 @@
 #!/usr/bin/env groovy
 
-import io.kevin197011.cicd.JenkinsJob
 
 def call() {
 

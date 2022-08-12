@@ -1,7 +1,6 @@
 #!/usr/bin/env groovy
 
-import io.kevin197011.cicd.Deploy
-import io.kevin197011.cicd.Message
+import io.kevin197011.cicd.DeployApp
 
 def call(Closure body) {
 
@@ -13,7 +12,7 @@ def call(Closure body) {
 //    def projectGit = config.git
 //    def projectHost = config.host
 
-    def deploy = new Deploy(config.git as String, config.host as String)
+    def deploy = new DeployApp(config.git as String, config.host as String)
 
     //pipeline
     pipeline {

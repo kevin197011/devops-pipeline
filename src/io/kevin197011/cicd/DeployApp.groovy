@@ -4,12 +4,12 @@ package io.kevin197011.cicd
  * Deploy class
  */
 
-class Deploy extends AbstractDeploy {
+class DeployApp {
 
     private String repo
     private String host
 
-    Deploy(String repo, String host) {
+    DeployApp(String repo, String host) {
         this.repo = repo
         this.host = host
     }
