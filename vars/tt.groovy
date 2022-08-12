@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
                             println("git clone item: [${it}]")
                         }
 
-                        Gitlab.gitCloneItem('https://github.com/jenkinsci/file-parameters-plugin.git', '')
+                        Gitlab.gitCloneItem('https://github.com/jenkinsci/file-parameters-plugin.git', 'test', 'master')
                     }
                 }
             }
