@@ -3,7 +3,7 @@ package io.kevin197011.cicd
 class Gitlab {
 
     Script script
-    static void gitCloneItem(String repo, String token, String branch = 'master') {
+    void gitCloneItem(String repo, String token, String branch = 'master') {
 
         def result = new StringBuffer()
         def error = new StringBuffer()

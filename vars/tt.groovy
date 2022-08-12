@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
 '''
 
     def database = new Database('localhost', 'tt', 'devops', '123456', sqlData)
+    def gitlab = new Gitlab()
 
     def repoList = [
             'a',
@@ -45,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
                             println("git clone item: [${it}]")
                         }
 
-                        Gitlab.gitCloneItem('https://github.com/jenkinsci/file-parameters-plugin.git', 'test', 'master')
+                        gitlab.gitCloneItem('https://github.com/jenkinsci/file-parameters-plugin.git', 'test', 'master')
                     }
                 }
             }
