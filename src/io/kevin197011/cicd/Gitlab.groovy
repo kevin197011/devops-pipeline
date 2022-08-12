@@ -7,6 +7,6 @@ class Gitlab {
 //                credentialsId: token,
 //                branch: branch)
 
-        sh("git clone ${repo}" )
-
+        sh("git clone ${repo}")
+    }
 }
