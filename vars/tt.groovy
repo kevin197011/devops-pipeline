@@ -47,7 +47,7 @@ def call() {
                 description('select your choice')
                 choiceType('RADIO')
                 groovyScript {
-                    script("if(choice1.equals("aaa")){return ['a', 'b']} else {return ['aaaaaa','fffffff']}")
+                    script("if(choice1.equals('aaa')){return ['a', 'b']} else {return ['aaaaaa','fffffff']}")
                     fallbackScript('return ["error"]')
                 }
                 referencedParameter('choice1')
