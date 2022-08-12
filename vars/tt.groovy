@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
             stage('deploy app') {
                 steps {
                     script {
-                        sleep(10)
+                        sleep(1)
                     }
                 }
             }
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
             stage('deploy config') {
                 steps {
                     script {
-                        sleep(10)
+                        sleep(1)
                     }
                 }
             }
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
             stage('restart app') {
                 steps {
                     script {
-                        sleep(10)
+                        sleep(1)
                     }
                 }
             }
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
             stage('check list') {
                 steps {
                     script {
-                        sleep(10)
+                        sleep(1)
                     }
                 }
             }
