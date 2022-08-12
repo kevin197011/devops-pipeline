@@ -11,19 +11,21 @@ class Database {
     private String database
     private String username
     private String password
-    private String sqlData
 
-    Database(String host, String database, String username, String password, String sqlData) {
+    Database(String host, String database, String username, String password) {
         this.host = host
         this.database = database
         this.username = username
         this.password = password
-        this.sqlData = sqlData
+//        this.sqlData = sqlData
     }
 
     boolean execute() {
         boolean val = false
-        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true",
+
+        def sqlData = new File("/tmp/sql/t1/t.sql").text
+
+        def instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true",
                 this.username, this.password, "com.mysql.jdbc.Driver")
         instance.connection.autoCommit = false
 

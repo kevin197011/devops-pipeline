@@ -6,17 +6,18 @@ import io.kevin197011.cicd.Database
 
 def call() {
 
-    def sqlData = '''
-CREATE TABLE IF NOT EXISTS `runoob_tbl`(
-   `runoob_id` INT UNSIGNED AUTO_INCREMENT,
-   `runoob_title` VARCHAR(100) NOT NULL,
-   `runoob_author` VARCHAR(40) NOT NULL,
-   `submission_date` DATE,
-   PRIMARY KEY ( `runoob_id` )
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-'''
+//    def sqlData = '''
+//DROP table IF EXISTS `t1`;
+//CREATE TABLE IF NOT EXISTS `t1`(
+//   `runoob_id` INT UNSIGNED AUTO_INCREMENT,
+//   `runoob_title` VARCHAR(100) NOT NULL,
+//   `runoob_author` VARCHAR(40) NOT NULL,
+//   `submission_date` DATE,
+//   PRIMARY KEY ( `runoob_id` )
+//)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+//'''
 
-    def database = new Database('localhost', 'tt', 'devops', '123456', sqlData)
+    def database = new Database('localhost', 'tt', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
 
     def repoList = [
@@ -51,19 +52,19 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
                 }
             }
 
-//            stage('deploy database') {
-//                steps {
-//                    script {
-////                      println(System.getProperty("java.ext.dirs"))
-//                        def val = database.execute()
-//                        if (val) {
-//                            println("sql execute succeed!")
-//                        } else {
-//                            error("sql execute error!")
-//                        }
-//                    }
-//                }
-//            }
+            stage('deploy database') {
+                steps {
+                    script {
+//                      println(System.getProperty("java.ext.dirs"))
+                        def val = database.execute()
+                        if (val) {
+                            println("sql execute succeed!")
+                        } else {
+                            error("sql execute error!")
+                        }
+                    }
+                }
+            }
 
             stage('deploy app') {
                 steps {
