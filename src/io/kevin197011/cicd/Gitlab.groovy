@@ -2,6 +2,7 @@ package io.kevin197011.cicd
 
 class Gitlab {
 
+    Script script
     static void gitCloneItem(String repo, String token, String branch = 'master') {
 
         def result = new StringBuffer()
@@ -12,10 +13,9 @@ class Gitlab {
         cmd.waitForOrKill(1000)
 
         if (!error.toString().equals(""))
-            println "Error al ejecutar el comando"
+            this.script.println("Error!")
         else {
-            println "Ejecutado correctamente"
-            println result
+            this.script.println(result)
         }
     }
 }
