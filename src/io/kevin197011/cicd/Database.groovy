@@ -23,7 +23,8 @@ class Database {
 
     boolean execute() {
         boolean val = false
-        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true", this.username, this.password, "com.mysql.jdbc.Driver")
+        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true",
+                this.username, this.password, "com.mysql.jdbc.Driver")
         instance.connection.autoCommit = false
 
         try {
