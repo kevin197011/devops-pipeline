@@ -22,7 +22,7 @@ class Database {
 
     boolean execute() {
 //        Class.forName("com.mysql.jdbc.Driver");
-        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/tt/?allowMultiQueries=true", this.username, this.password, "com.mysql.jdbc.Driver")
+        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/tt?allowMultiQueries=true", this.username, this.password, "com.mysql.jdbc.Driver")
         boolean execute = instance.execute(sqlDate)
         instance.close()
         return execute
