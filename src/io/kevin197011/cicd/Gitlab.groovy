@@ -13,9 +13,9 @@ class Gitlab {
         cmd.waitForOrKill(1000)
 
         if (!error.toString().equals(""))
-            this.script.println("Error!")
+            this.script.echo("Error!")
         else {
-            this.script.println(result)
+            this.script.echo(result)
         }
     }
 }
