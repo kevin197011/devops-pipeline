@@ -6,14 +6,14 @@ package io.kevin197011.cicd
 
 import groovy.sql.Sql
 
-class Database {
+class DeployDatabase {
     private String project
     private String host
     private String database
     private String username
     private String password
 
-    Database(String project, String host, String database, String username, String password) {
+    DeployDatabase(String project, String host, String database, String username, String password) {
         this.project = project
         this.host = host
         this.database = database

@@ -1,31 +1,19 @@
 #!/usr/bin/env groovy
+// println(System.getProperty("java.ext.dirs"))
 
-
+import io.kevin197011.cicd.Config
 import io.kevin197011.cicd.Gitlab
-import io.kevin197011.cicd.Database
+import io.kevin197011.cicd.DeployDatabase
 
 def call() {
 
-//    def sqlData = '''
-//DROP table IF EXISTS `t1`;
-//CREATE TABLE IF NOT EXISTS `t1`(
-//   `runoob_id` INT UNSIGNED AUTO_INCREMENT,
-//   `runoob_title` VARCHAR(100) NOT NULL,
-//   `runoob_author` VARCHAR(40) NOT NULL,
-//   `submission_date` DATE,
-//   PRIMARY KEY ( `runoob_id` )
-//)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-//'''
+    def project = Config.project
+    def appName = Config.appName
+    def appPath = Config.appPath
+    def appConfig = Config.appConfig
 
-    def database = new Database('t1', 'localhost', 'tt', 'devops', '123456')
+    def database = new DeployDatabase('t1', 'localhost', 'tt', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
-
-    def repoList = [
-            'a',
-            'b',
-            'c',
-            'd'
-    ]
 
     //pipeline
     pipeline {
@@ -38,15 +26,18 @@ def call() {
             timeout(time: 1, unit: 'HOURS')
         }
 
+        parameters {
+            choice(name: 'project', choices: project, description: 'Which project?')
+            choice(name: 'appName', choices: appName[params.project], description: 'Which appName?')
+            booleanParam(name: 'DeployDatabase', defaultValue: false, description: 'do?')
+            booleanParam(name: 'doDeploy', defaultValue: false, description: 'do?')
+        }
+
         stages {
 
             stage('git clone item') {
                 steps {
                     script {
-                        repoList.each {
-                            println("git clone item: [${it}]")
-                        }
-
                         gitlab.gitCloneItem('https://github.com/kevin197011/chatOps.git', 'master')
                     }
                 }
@@ -55,12 +46,15 @@ def call() {
             stage('deploy database') {
                 steps {
                     script {
-//                      println(System.getProperty("java.ext.dirs"))
-                        def val = database.execute()
-                        if (val) {
-                            println("sql execute succeed!")
+                        if (params.DeployDatabase) {
+                            def val = database.execute()
+                            if (val) {
+                                println("sql execute succeed!")
+                            } else {
+                                error("sql execute error!")
+                            }
                         } else {
-                            error("sql execute error!")
+                            println("deploy database skip...")
                         }
                     }
                 }
@@ -69,20 +63,13 @@ def call() {
             stage('deploy app') {
                 steps {
                     script {
-                        sleep(1)
+                        print("project => ${params.project}")
+                        print("appName => ${params.appName}")
                     }
                 }
             }
 
-            stage('deploy config') {
-                steps {
-                    script {
-                        sleep(1)
-                    }
-                }
-            }
-
-            stage('restart app') {
+            stage('deploy config then restart') {
                 steps {
                     script {
                         sleep(1)
@@ -97,7 +84,6 @@ def call() {
                     }
                 }
             }
-
         }
 
         post {
