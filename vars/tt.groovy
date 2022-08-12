@@ -32,8 +32,8 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
                 steps {
                     script {
 //                        println(System.getProperty("java.ext.dirs"))
-                        def execute = database.execute()
-                        if (execute) {
+                        def val = database.execute()
+                        if (val) {
                             println("sql execute sucessed!")
                         } else {
                             error("sql execute error!")
