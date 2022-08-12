@@ -29,7 +29,7 @@ def call() {
             stage('test') {
                 steps {
                     script {
-                        println System.getProperty("java.ext.dirs")
+                        println(System.getProperty("java.ext.dirs"))
                         def execute = database.execute()
                         if (oexecute) {
                             println("sql execute sucessed!")
