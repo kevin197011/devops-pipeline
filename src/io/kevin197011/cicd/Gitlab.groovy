@@ -6,7 +6,7 @@ class Gitlab {
     Script script
 
     void gitCloneItem(String repo, String token, String branch = 'master') {
-        script.each("git clone chatOps!")
+        script.echo("git clone chatOps!")
         script.git(url: "https://github.com/kevin197011/chatOps.git", branch: 'master')
     }
 }
