@@ -16,76 +16,64 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
 
     def database = new Database('localhost', 'tt', 'devops', '123456', sqlData)
 
-            //pipeline
-            pipeline {
-                agent any
+    //pipeline
+    pipeline {
+        agent any
 
-                options {
-                    timestamps()
-                    skipDefaultCheckout()
-                    disableConcurrentBuilds()
-                    timeout(time: 1, unit: 'HOURS')
-                }
+        options {
+            timestamps()
+            skipDefaultCheckout()
+            disableConcurrentBuilds()
+            timeout(time: 1, unit: 'HOURS')
+        }
 
-                stages {
-                    stage('test') {
-                        steps {
-                            script {
-//                              println(System.getProperty("java.ext.dirs"))
-                                def val = database.execute()
-                                if (val) {
-                                    println("sql execute sucessed!")
-                                } else {
-                                    error("sql execute error!")
-                                }
-                            }
-                        }
-                    }
-
-                    stage('parallel') {
-                        parallel {
-                            stage('A') {
-                                steps {
-                                    script {
-                                        sleep(10)
-                                    }
-                                }
-                            }
-                            stage('B') {
-                                steps {
-                                    script {
-                                        sleep(10)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                post {
-                    always {
-                        script {
-                            println('always')
-                        }
-                    }
-
-                    success {
-                        script {
-                            println('success')
-                        }
-                    }
-
-                    failure {
-                        script {
-                            println('failure')
-                        }
-                    }
-
-                    aborted {
-                        script {
-                            println('aborted')
+        stages {
+            stage('deploy database') {
+                steps {
+                    script {
+//                      println(System.getProperty("java.ext.dirs"))
+                        def val = database.execute()
+                        if (val) {
+                            println("sql execute succeed!")
+                        } else {
+                            error("sql execute error!")
                         }
                     }
                 }
             }
-}
+
+            stage('deploy app') {
+                steps {
+                    script {
+                        sleep(10)
+                    }
+                }
+            }
+
+            post {
+                always {
+                    script {
+                        println('always')
+                    }
+                }
+
+                success {
+                    script {
+                        println('success')
+                    }
+                }
+
+                failure {
+                    script {
+                        println('failure')
+                    }
+                }
+
+                aborted {
+                    script {
+                        println('aborted')
+                    }
+                }
+            }
+        }
+    }
