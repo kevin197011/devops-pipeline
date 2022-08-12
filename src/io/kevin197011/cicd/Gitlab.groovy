@@ -5,15 +5,13 @@ class Gitlab {
 
     Script script
 
-    void gitCloneItem(String repo, String token, String branch = 'master') {
+    void gitCloneItem(String repo, String branch = 'master') {
         script.echo("git clone chatOps!")
 
         def appsDir = new File('/tmp/apps')
-        if (!appsDir.exists()){
+        if (!appsDir.exists()) {
             appsDir.mkdirs()
         }
-//        script.sh('[[ -d /tmp/apps || mkdir /tmp/apps ]]')
-        script.sh("git clone https://github.com/kevin197011/chatOps.git /tmp/apps/chatOps")
-//        script.git(url: "https://github.com/kevin197011/chatOps.git", branch: 'master')
+        script.sh("git clone --branch ${branch} ${repo} /tmp/apps/")
     }
 }
