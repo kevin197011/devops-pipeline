@@ -7,7 +7,7 @@ class Gitlab {
         def result = new StringBuffer()
         def error = new StringBuffer()
 
-        def cmd = "git clone ${repo}".execute()
+        def cmd = "git clone ${repo} /tmp/test".execute()
         cmd.consumeProcessOutput(result, error)
         cmd.waitForOrKill(1000)
 
