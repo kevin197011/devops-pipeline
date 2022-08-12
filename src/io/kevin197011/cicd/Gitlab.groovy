@@ -12,6 +12,13 @@ class Gitlab {
         if (!appsDir.exists()) {
             appsDir.mkdirs()
         }
-        script.sh("git clone --branch ${branch} ${repo} /tmp/apps/")
+
+        def repoName = repo.split('/').last().split('.').first()
+        def repoDir = new File("/tmp/apps/${repoName}")
+        if (repoDir.exists()) {
+            repoDir.deleteDir()
+        }
+        
+        script.sh("git clone --branch ${branch} ${repo} /tmp/apps/${repoName}")
     }
 }
