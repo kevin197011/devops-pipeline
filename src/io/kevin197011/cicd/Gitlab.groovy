@@ -2,13 +2,20 @@ package io.kevin197011.cicd
 
 class Gitlab {
 
-    static boolean gitCloneItem(String repo, String token, String branch = 'master') {
-//        git(url: repo,
-//                credentialsId: token,
-//                branch: branch)
+    static void gitCloneItem(String repo, String token, String branch = 'master') {
 
-        script {
-            sh("git clone ${repo}")
+        def result = new StringBuffer()
+        def error = new StringBuffer()
+
+        def cmd = "git clone ${repo}".execute()
+        cmd.consumeProcessOutput(result, error)
+        cmd.waitForOrKill(1000)
+
+        if (!error.toString().equals(""))
+            println "Error al ejecutar el comando"
+        else {
+            println "Ejecutado correctamente"
+            println result
         }
     }
 }
