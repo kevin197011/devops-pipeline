@@ -7,23 +7,24 @@ package io.kevin197011.cicd
 import groovy.sql.Sql
 
 class Database {
+    private String project
     private String host
     private String database
     private String username
     private String password
 
-    Database(String host, String database, String username, String password) {
+    Database(String project, String host, String database, String username, String password) {
+        this.project = project
         this.host = host
         this.database = database
         this.username = username
         this.password = password
-//        this.sqlData = sqlData
     }
 
     boolean execute() {
         boolean val = false
 
-        def sqlData = new File("/tmp/sql/t1/t.sql").text
+        def sqlData = new File("/tmp/sql/${this.project}/t.sql").text
 
         def instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true",
                 this.username, this.password, "com.mysql.jdbc.Driver")

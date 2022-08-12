@@ -17,7 +17,7 @@ def call() {
 //)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 //'''
 
-    def database = new Database('localhost', 'tt', 'devops', '123456')
+    def database = new Database('t1', 'localhost', 'tt', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
 
     def repoList = [
