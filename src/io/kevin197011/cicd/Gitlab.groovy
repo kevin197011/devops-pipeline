@@ -7,12 +7,6 @@ class Gitlab {
 //                credentialsId: token,
 //                branch: branch)
 
-        deleteDir()
-        checkout([$class           : 'GitSCM',
-                  branches         : [[name: "*/${branch}"]],
-                  userRemoteConfigs: [[credentialsId: token,
-                                       url          : repo]]])
-
-    }
+        sh("git clone ${repo}" )
 
 }
