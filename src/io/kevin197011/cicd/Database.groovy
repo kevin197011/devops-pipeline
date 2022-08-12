@@ -22,6 +22,8 @@ class Database {
     boolean execute() {
         boolean val = false
         Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/tt?allowMultiQueries=true", this.username, this.password, "com.mysql.jdbc.Driver")
+        instance.connection.autoCommit = false
+        
         try {
             instance.execute(sqlData)
             instance.commit()
