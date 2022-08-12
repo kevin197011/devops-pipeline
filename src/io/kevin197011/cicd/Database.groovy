@@ -8,12 +8,14 @@ import groovy.sql.Sql
 
 class Database {
     private String host
+    private String database
     private String username
     private String password
     private String sqlData
 
-    Database(String host, String username, String password, String sqlData) {
+    Database(String host, String database, String username, String password, String sqlData) {
         this.host = host
+        this.database = database
         this.username = username
         this.password = password
         this.sqlData = sqlData
@@ -21,9 +23,9 @@ class Database {
 
     boolean execute() {
         boolean val = false
-        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/tt?allowMultiQueries=true", this.username, this.password, "com.mysql.jdbc.Driver")
+        Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true", this.username, this.password, "com.mysql.jdbc.Driver")
         instance.connection.autoCommit = false
-        
+
         try {
             instance.execute(sqlData)
             instance.commit()

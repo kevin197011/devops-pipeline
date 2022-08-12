@@ -14,78 +14,78 @@ CREATE TABLE IF NOT EXISTS `runoob_tbl`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 '''
 
-    def database = new Database('localhost', 'devops', '123456', sqlData)
+    def database = new Database('localhost', 'tt', 'devops', '123456', sqlData)
 
-    //pipeline
-    pipeline {
-        agent any
+            //pipeline
+            pipeline {
+                agent any
 
-        options {
-            timestamps()
-            skipDefaultCheckout()
-            disableConcurrentBuilds()
-            timeout(time: 1, unit: 'HOURS')
-        }
-
-        stages {
-            stage('test') {
-                steps {
-                    script {
-//                        println(System.getProperty("java.ext.dirs"))
-                        def val = database.execute()
-                        if (val) {
-                            println("sql execute sucessed!")
-                        } else {
-                            error("sql execute error!")
-                        }
-                    }
+                options {
+                    timestamps()
+                    skipDefaultCheckout()
+                    disableConcurrentBuilds()
+                    timeout(time: 1, unit: 'HOURS')
                 }
-            }
 
-            stage('parallel') {
-                parallel {
-                    stage('A') {
+                stages {
+                    stage('test') {
                         steps {
                             script {
-                                sleep(10)
+//                              println(System.getProperty("java.ext.dirs"))
+                                def val = database.execute()
+                                if (val) {
+                                    println("sql execute sucessed!")
+                                } else {
+                                    error("sql execute error!")
+                                }
                             }
                         }
                     }
-                    stage('B') {
-                        steps {
-                            script {
-                                sleep(10)
+
+                    stage('parallel') {
+                        parallel {
+                            stage('A') {
+                                steps {
+                                    script {
+                                        sleep(10)
+                                    }
+                                }
+                            }
+                            stage('B') {
+                                steps {
+                                    script {
+                                        sleep(10)
+                                    }
+                                }
                             }
                         }
                     }
                 }
-            }
-        }
 
-        post {
-            always {
-                script {
-                    println('always')
+                post {
+                    always {
+                        script {
+                            println('always')
+                        }
+                    }
+
+                    success {
+                        script {
+                            println('success')
+                        }
+                    }
+
+                    failure {
+                        script {
+                            println('failure')
+                        }
+                    }
+
+                    aborted {
+                        script {
+                            println('aborted')
+                        }
+                    }
                 }
             }
-
-            success {
-                script {
-                    println('success')
-                }
-            }
-
-            failure {
-                script {
-                    println('failure')
-                }
-            }
-
-            aborted {
-                script {
-                    println('aborted')
-                }
-            }
-        }
-    }
 }
