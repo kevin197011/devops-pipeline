@@ -1,5 +1,8 @@
 package io.kevin197011.cicd
 
+@Grab('mysql:mysql-connector-java:5.1.6')
+@GrabConfig(systemClassLoader=true)
+
 import groovy.sql.Sql
 
 class Database {
