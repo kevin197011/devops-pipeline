@@ -37,12 +37,12 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-                                            if (ProjectName == 'Aproject') {
-                                                return['q', 'w', 'e']
-                                            } else if(ProjectName == 'Bproject') {
-                                                return['a', 's', 'd']
-                                            } else if(ProjectName == 'Cproject') {
-                                                return['z', 'x', 'c']
+                                            if (ProjectName == 'YZ') {
+                                                return['YZ_SIT_kllm', 'b1', 'c1', 'd1']
+                                            } else if(ProjectName == 'XX') {
+                                                return['a2', 'b2', 'c2', 'd2']
+                                            } else if(ProjectName == 'YY') {
+                                                return['a3', 'b4', 'c4', 'd4']
                                             }
                                         """.stripIndent()
                               ]

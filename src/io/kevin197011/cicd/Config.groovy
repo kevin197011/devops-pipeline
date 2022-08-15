@@ -2,7 +2,7 @@ package io.kevin197011.cicd
 
 class Config {
     // project name
-    final static ArrayList<String> projectName = ['YZ', 'XX', 'XX']
+    final static ArrayList<String> projectName = ['YZ', 'XX', 'YY']
 
     // project gitlab
     final static LinkedHashMap<String, String> projectGit = [
@@ -14,8 +14,8 @@ class Config {
     // project app
     final static LinkedHashMap<String, ArrayList<String>> appName = [
             'YZ': ['YZ_SIT_kllm', 'b1', 'c1', 'd1'],
-            'PYQ': ['a2', 'b2', 'c2', 'd2'],
-            'ZH': ['a3', 'b4', 'c4', 'd4']
+            'XX': ['a2', 'b2', 'c2', 'd2'],
+            'YY': ['a3', 'b4', 'c4', 'd4']
     ]
 
     // app host
