@@ -17,6 +17,10 @@ def call() {
     def deployApp = new DeployApp(script: this)
     def deployConfig = new DeployConfig(script: this)
 
+    environment {
+        ssh_key = credentials('349f9a1e-b4a0-4f1a-98cf-b0574ccf1b54')
+    }
+
 
     properties([
             parameters([
