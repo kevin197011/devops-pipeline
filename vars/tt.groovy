@@ -15,9 +15,6 @@ def call() {
     def database = new DeployDatabase('t1', 'localhost', 'tt', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
 
-    def var1 = ['a', 'b', 'c']
-    def var2 = ['d', 'e', 'f']
-    def var3 = ['g', 'h', 'i']
 
     properties([
             parameters([
@@ -38,15 +35,13 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-                                            import io.kevin197011.cicd.Config
-                                            def def appName = Config.appName
-                                            return(appName.get(projectVar))
-
-//                                            if (projectVar == 'Aproject') {
-//                                                return['q', 'w', 'e']
-//                                            } else {
-//                                                return['a', 's', 'd']
-//                                            }
+                                            if (projectVar == 'Aproject') {
+                                                return['q', 'w', 'e']
+                                            } else if(projectVar == 'Bproject') {
+                                                return['a', 's', 'd']
+                                            } else {
+                                                return['z', 'x', 'c']
+                                            }
                                         """.stripIndent()
                               ]
                      ]
