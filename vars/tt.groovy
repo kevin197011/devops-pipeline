@@ -38,7 +38,7 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-//                                            import io.kevin197011.cicd.Config
+                                            import io.kevin197011.cicd.Config
                                             def def appName = Config.appName
                                             return appName[projectVar]
                                         """.stripIndent()
