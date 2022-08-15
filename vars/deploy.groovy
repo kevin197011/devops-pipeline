@@ -20,23 +20,23 @@ def call() {
 
     properties([
             parameters([
-                    [$class: 'CascadeChoiceParameter',
-                     choiceType: 'PT_SINGLE_SELECT',
-                     description: 'Which app?',
-                     filterLength: 1,
-                     filterable: false,
-                     name: 'AppName',
+                    [$class              : 'CascadeChoiceParameter',
+                     choiceType          : 'PT_SINGLE_SELECT',
+                     description         : 'Which app?',
+                     filterLength        : 1,
+                     filterable          : false,
+                     name                : 'AppName',
                      referencedParameters: 'ProjectName',
-                     script: [$class: 'GroovyScript',
-                              fallbackScript: [
-                                      classpath: [],
-                                      sandbox: true,
-                                      script: 'return ["ERROR"]'
-                              ],
-                              script: [
-                                      classpath: [],
-                                      sandbox: true,
-                                      script: """
+                     script              : [$class        : 'GroovyScript',
+                                            fallbackScript: [
+                                                    classpath: [],
+                                                    sandbox  : true,
+                                                    script   : 'return ["ERROR"]'
+                                            ],
+                                            script        : [
+                                                    classpath: [],
+                                                    sandbox  : true,
+                                                    script   : """
                                             if (ProjectName == 'YZ') {
                                                 return['YZ_SIT_kllm', 'b1', 'c1', 'd1']
                                             } else if(ProjectName == 'XX') {
@@ -45,7 +45,7 @@ def call() {
                                                 return['a3', 'b4', 'c4', 'd4']
                                             }
                                         """.stripIndent()
-                              ]
+                                            ]
                      ]
                     ]
             ])
@@ -68,6 +68,7 @@ def call() {
             string(name: 'Host', defaultValue: 'None', trim: true, description: 'Host')
             choice(name: 'ProjectName', choices: "${project}", description: 'Which project?')
             booleanParam(name: 'DeployDB', defaultValue: false, description: 'sure?')
+            booleanParam(name: 'UpdateJob', defaultValue: True, description: 'UpdateJob?')
         }
 
 
@@ -85,7 +86,7 @@ def call() {
             stage('deploy database') {
                 steps {
                     script {
-                        if (params.DeployDB) {
+                        if ((!params.UpdateJob) && (params.DeployDB)) {
                             def val = database.execute()
                             if (val) {
                                 println("sql execute succeed!")
@@ -102,8 +103,10 @@ def call() {
             stage('deploy app') {
                 steps {
                     script {
-                        deployApp.deploy(params.ProjectName, params.AppName, params.Host)
-                        println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app!")
+                        if (!params.UpdateJob) {
+                            deployApp.deploy(params.ProjectName, params.AppName, params.Host)
+                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app!")
+                        }
                     }
                 }
             }
@@ -111,8 +114,10 @@ def call() {
             stage('deploy config then restart') {
                 steps {
                     script {
-                        deployConfig.deploy(params.ProjectName, params.AppName, params.Host)
-                        println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart!")
+                        if (!params.UpdateJob) {
+                            deployConfig.deploy(params.ProjectName, params.AppName, params.Host)
+                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart!")
+                        }
                     }
                 }
             }
