@@ -39,11 +39,11 @@ def call() {
                                       sandbox: true,
                                       script: """
                                             if (projectVar == 'projectA') { 
-                                                return ${var1}
+                                                return var1
                                             } else if (projectVar == 'projectB') {
-                                                return ${var2}
+                                                return var2
                                             } else {
-                                                return ${var3}
+                                                return var3
                                             }
                                         """.stripIndent()
                               ]
