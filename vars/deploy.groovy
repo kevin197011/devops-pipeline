@@ -72,7 +72,7 @@ def call() {
             stage('git clone item') {
                 steps {
                     script {
-                        gitlab.gitCloneItem('https://github.com/kevin197011/chatOps.git', 'master')
+                        gitlab.cloneItem('https://github.com/kevin197011/chatOps.git', 'master')
                     }
                 }
             }
