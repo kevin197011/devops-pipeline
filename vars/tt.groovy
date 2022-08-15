@@ -38,6 +38,10 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
+                                            def var1 = ['a', 'b', 'c']
+                                            def var2 = ['d', 'e', 'f']
+                                            def var3 = ['g', 'h', 'i']
+                                            
                                             if (projectVar == 'projectA') { 
                                                 return var1
                                             } else if (projectVar == 'projectB') {
