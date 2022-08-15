@@ -4,11 +4,11 @@ class DeployConfig {
 
     Script script
 
-    void restart(String host) {
-
-        script.sh("ssh deploy@${host} 'bash /opt/script/app_restart.sh'")
-
-    }
+//    void restart(String host) {
+//
+//        script.sh("ssh deploy@${host} 'bash /opt/script/app_restart.sh'")
+//
+//    }
 
 //    void deploy(String project, String appName,String host, Map appConfig) {
     void deploy(String project, String appName,String host) {
@@ -19,6 +19,6 @@ class DeployConfig {
         script.echo("DeployApp deploy ${project} ${appName} in ${host}!")
 //        script.sh("bash /tmp/workspace/${project}/${appName}/scripts/deploy_config.sh ${host}")
 
-        this.restart(host)
+//        this.restart(host)
     }
 }
