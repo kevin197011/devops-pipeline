@@ -38,7 +38,7 @@ def call() {
                                                     sandbox  : true,
                                                     script   : """
                                             if (ProjectName == 'YZ') {
-                                                return['YZ_SIT_kllm', 'b1', 'c1', 'd1']
+                                                return['kllm', 'b1', 'c1', 'd1']
                                             } else if(ProjectName == 'XX') {
                                                 return['a2', 'b2', 'c2', 'd2']
                                             } else if(ProjectName == 'YY') {
