@@ -1,6 +1,6 @@
 package io.kevin197011.cicd
 
-//@GrabConfig(systemClassLoader=true)
+@GrabConfig(systemClassLoader=true)
 @Grapes(
         @Grab(group = 'org.wisdom-framework', module = 'mysql-connector-java', version = '5.1.34_1')
 )
