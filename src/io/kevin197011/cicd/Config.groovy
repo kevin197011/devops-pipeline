@@ -13,7 +13,7 @@ class Config {
 
     // project app
     final static LinkedHashMap<String, ArrayList<String>> appName = [
-            'YZ': ['YZ_SIT_kllm', 'b1', 'c1', 'd1'],
+            'YZ': ['kllm', 'b1', 'c1', 'd1'],
             'XX': ['a2', 'b2', 'c2', 'd2'],
             'YY': ['a3', 'b4', 'c4', 'd4']
     ]

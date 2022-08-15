@@ -12,8 +12,8 @@ class DeployApp {
     void deploy(String project, String appName, String host) {
 //        script.sh("rsync -avzR --delete /tmp/project/apps/${project}/${appName}/ deploy@${host}:${deploypath}/")
 //        script.sh("ssh deploy@${host} chown -R deploy:deploy ${deploypath}")
-        script.echo("DeployApp deploy ${project} ${appName} in ${host}!")
-//        script.sh("bash /tmp/workspace/${project}/${appName}/scripts/deploy_app.sh ${host}")
+//        script.echo("DeployApp deploy ${project} ${appName} in ${host}!")
+        script.sh("bash /tmp/workspace/${project}/scripts/${appName}_deploy_app.sh ${host}")
     }
 
 }
