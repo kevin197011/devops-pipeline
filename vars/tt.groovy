@@ -60,7 +60,7 @@ def call() {
                                                  classpath: [],
                                                  sandbox: false,
                                                  script: """
-                                                         return ${project}
+                                                         return project
                                                          """
                                          ]
                                  ]
