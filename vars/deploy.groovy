@@ -105,7 +105,7 @@ def call() {
                     script {
                         if (!params.UpdateJob) {
                             deployApp.deploy(params.ProjectName, params.AppName, params.Host)
-                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app!")
+                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app sucessed!")
                         }
                     }
                 }
@@ -116,7 +116,7 @@ def call() {
                     script {
                         if (!params.UpdateJob) {
                             deployConfig.deploy(params.ProjectName, params.AppName, params.Host)
-                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart!")
+                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart sucessed!")
                         }
                     }
                 }
