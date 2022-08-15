@@ -19,7 +19,7 @@ def call() {
     def var2 = ['d', 'e', 'f']
     def var3 = ['g', 'h', 'i']
 
-    def properties([
+    properties([
             parameters([
                     [$class: 'CascadeChoiceParameter',
                      choiceType: 'PT_SINGLE_SELECT',
