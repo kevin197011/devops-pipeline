@@ -38,7 +38,7 @@ def call() {
 
 
 
-            stages {
+            stage('params test') {
                 steps {
                     script {
                         properties([
