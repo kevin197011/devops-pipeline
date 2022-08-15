@@ -1,17 +1,17 @@
 package io.kevin197011.cicd
 
 class Config {
-    // config project name
+    // project name
     final static ArrayList<String> projectName = ['Aproject', 'Bproject', 'Cproject']
 
-    // config project gitlab
+    // project gitlab
     final static LinkedHashMap<String, String> projectGit = [
             'Aproject': 'https://gitlab.com/a1',
             'Bproject': 'https://gitlab.com/b1',
             'Cproject': 'https://gitlab.com/c1'
     ]
 
-    // config project apps
+    // project app
     final static LinkedHashMap<String, ArrayList<String>> appName = [
             'Aproject': ['a1', 'b1', 'c1', 'd1'],
             'Bproject': ['a2', 'b2', 'c2', 'd2'],
@@ -40,7 +40,7 @@ class Config {
             ]
     ]
 
-    // config app config path
+    // app config path
     final static LinkedHashMap<String, LinkedHashMap<String, String>> appPath = [
             'Aproject': [
                     'a1': '/configPath',
@@ -62,7 +62,7 @@ class Config {
             ]
     ]
 
-    // config app config file
+    // app config file
     final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appConfig = [
             'Aproject': [
                     'a1': ['a.config', 'b.config'],
