@@ -77,22 +77,22 @@ def call() {
                 }
             }
 
-            stage('deploy database') {
-                steps {
-                    script {
-                        if (params.DeployDB) {
-                            def val = database.execute()
-                            if (val) {
-                                println("sql execute succeed!")
-                            } else {
-                                error("sql execute error!")
-                            }
-                        } else {
-                            println("deploy db skip...")
-                        }
-                    }
-                }
-            }
+//            stage('deploy database') {
+//                steps {
+//                    script {
+//                        if (params.DeployDB) {
+//                            def val = database.execute()
+//                            if (val) {
+//                                println("sql execute succeed!")
+//                            } else {
+//                                error("sql execute error!")
+//                            }
+//                        } else {
+//                            println("deploy db skip...")
+//                        }
+//                    }
+//                }
+//            }
 
             stage('deploy app') {
                 steps {
