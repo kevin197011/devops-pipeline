@@ -23,10 +23,10 @@ def call() {
             parameters([
                     [$class: 'CascadeChoiceParameter',
                      choiceType: 'PT_SINGLE_SELECT',
-                     description: 'Select a choice',
+                     description: 'Select app name',
                      filterLength: 1,
-                     filterable: true,
-                     name: 'choice1',
+                     filterable: false,
+                     name: 'appName',
                      referencedParameters: 'projectVar',
                      script: [$class: 'GroovyScript',
                               fallbackScript: [
@@ -38,17 +38,9 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-                                            def var1 = ['a', 'b', 'c']
-                                            def var2 = ['d', 'e', 'f']
-                                            def var3 = ['g', 'h', 'i']
-                                            
-                                            if (projectVar == 'Aproject') { 
-                                                return var1
-                                            } else if (projectVar == 'Bproject') {
-                                                return var2
-                                            } else {
-                                                return var3
-                                            }
+//                                            import io.kevin197011.cicd.Config
+                                            def def appName = Config.appName
+                                            return appName[projectVar]
                                         """.stripIndent()
                               ]
                      ]
