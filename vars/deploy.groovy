@@ -94,29 +94,29 @@ def call() {
 //                }
 //            }
 
-            stage('deploy app') {
-                steps {
-                    script {
-                        // TODO
-                    }
-                }
-            }
+//            stage('deploy app') {
+//                steps {
+//                    script {
+//                        // TODO
+//                    }
+//                }
+//            }
 
-            stage('deploy config then restart') {
-                steps {
-                    script {
-                        // TODO
-                    }
-                }
-            }
-
-            stage('check list') {
-                steps {
-                    script {
-                        // TODO
-                    }
-                }
-            }
+//            stage('deploy config then restart') {
+//                steps {
+//                    script {
+//                        // TODO
+//                    }
+//                }
+//            }
+//
+//            stage('check list') {
+//                steps {
+//                    script {
+//                        // TODO
+//                    }
+//                }
+//            }
         }
 
         post {
