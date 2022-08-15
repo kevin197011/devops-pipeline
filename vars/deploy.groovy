@@ -63,6 +63,7 @@ def call() {
 
         parameters {
             choice(name: 'ProjectName', choices: "${project}", description: 'Which project?')
+            booleanParam(name: 'DeployDB', defaultValue: false, description: 'sure?')
         }
 
 
@@ -79,7 +80,7 @@ def call() {
             stage('deploy database') {
                 steps {
                     script {
-                        if (params.DeployDatabase) {
+                        if (params.DeployDB) {
                             def val = database.execute()
                             if (val) {
                                 println("sql execute succeed!")
@@ -87,7 +88,7 @@ def call() {
                                 error("sql execute error!")
                             }
                         } else {
-                            println("deploy database skip...")
+                            println("deploy db skip...")
                         }
                     }
                 }
