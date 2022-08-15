@@ -42,9 +42,9 @@ def call() {
                                             def var2 = ['d', 'e', 'f']
                                             def var3 = ['g', 'h', 'i']
                                             
-                                            if (projectVar == 'projectA') { 
+                                            if (projectVar == 'Aproject') { 
                                                 return var1
-                                            } else if (projectVar == 'projectB') {
+                                            } else if (projectVar == 'Bproject') {
                                                 return var2
                                             } else {
                                                 return var3
