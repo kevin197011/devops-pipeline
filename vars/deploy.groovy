@@ -125,14 +125,15 @@ def call() {
                     }
                 }
             }
-//
-//            stage('check list') {
-//                steps {
-//                    script {
-//                        // TODO
-//                    }
-//                }
-//            }
+
+            stage('check list') {
+                steps {
+                    script {
+                        // TODO
+                        println("check list stage!")
+                    }
+                }
+            }
         }
 
         post {
