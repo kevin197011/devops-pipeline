@@ -7,15 +7,15 @@ class Gitlab {
 
     void gitCloneItem(String repo, String branch = 'master') {
 
-        def repoName = repo.split('/').last().toString().tokenize('.').first().toString()
+        Object repoName = repo.split('/').last().toString().tokenize('.').first().toString()
         script.echo("git clone ${repoName}!")
 
-        def appsDir = new File('/tmp/apps')
+        Object appsDir = new File('/tmp/apps')
         if (!appsDir.exists()) {
             appsDir.mkdirs()
         }
 
-        def repoDir = new File("/tmp/apps/${repoName}")
+        Object repoDir = new File("/tmp/apps/${repoName}")
         if (repoDir.exists()) {
             repoDir.deleteDir()
         }
