@@ -1,6 +1,5 @@
 package io.kevin197011.cicd
 
-
 class DeployApp {
     Script script
 
