@@ -16,7 +16,7 @@ class DeployConfig {
 //        appConfig.each {
 //            script.sh("scp -vr /tmp/project/config/${project}/${appName}/config/${it.key} deploy@${host}:${it.value}")
 //        }
-        script.echo("DeployApp deploy ${project} ${appName} in ${host}!")
+        script.echo("DeployApp deploy ${project} ${appName} config in ${host}!")
 //        script.sh("bash /tmp/workspace/${project}/${appName}/scripts/deploy_config.sh ${host}")
 
 //        this.restart(host)
