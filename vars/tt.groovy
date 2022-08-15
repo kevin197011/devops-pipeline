@@ -7,8 +7,8 @@ import io.kevin197011.cicd.DeployDatabase
 
 def call() {
 
-    def project = Config.project.join('\n')
-    def appName = Config.appName
+    def project = Config.projectName.join('\n')
+//    def appName = Config.appName
     def appPath = Config.appPath
     def appConfig = Config.appConfig
 
@@ -20,7 +20,7 @@ def call() {
             parameters([
                     [$class: 'CascadeChoiceParameter',
                      choiceType: 'PT_SINGLE_SELECT',
-                     description: 'Select app name',
+                     description: 'Which app?',
                      filterLength: 1,
                      filterable: false,
                      name: 'AppName',
@@ -50,10 +50,6 @@ def call() {
     ])
 
 
-
-
-
-
     //pipeline
     pipeline {
         agent any
@@ -64,14 +60,6 @@ def call() {
             disableConcurrentBuilds()
             timeout(time: 1, unit: 'HOURS')
         }
-
-//        parameters {
-//            choice(name: 'project', choices: project, description: 'Which project?')
-//            choice(name: 'appName', choices: appName[params.project], description: 'Which appName?')
-//            booleanParam(name: 'DeployDatabase', defaultValue: false, description: 'do?')
-//            booleanParam(name: 'doDeploy', defaultValue: false, description: 'do?')
-//        }
-
 
         parameters {
             choice(name: 'ProjectName', choices: "${project}", description: 'Which project?')

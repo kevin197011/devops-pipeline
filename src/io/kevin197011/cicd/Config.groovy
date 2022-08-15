@@ -2,17 +2,39 @@ package io.kevin197011.cicd
 
 class Config {
     // config project name
-    static ArrayList<String> project = ['Aproject', 'Bproject', 'Cproject']
+    final static ArrayList<String> projectName = ['Aproject', 'Bproject', 'Cproject']
 
     // config project apps
-    static LinkedHashMap<String, ArrayList<String>> appName = [
+    final static LinkedHashMap<String, ArrayList<String>> appName = [
             'Aproject': ['a1', 'b1', 'c1', 'd1'],
             'Bproject': ['a2', 'b2', 'c2', 'd2'],
             'Cproject': ['a3', 'b4', 'c4', 'd4']
     ]
 
+    // app host
+    final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appHost = [
+            'Aproject': [
+                    'a1': ['1.1.1.1', '2.2.2.2'],
+                    'b1': ['1.1.1.1', '2.2.2.2'],
+                    'c1': ['1.1.1.1', '2.2.2.2'],
+                    'd1': ['1.1.1.1', '2.2.2.2']
+            ],
+            'Bproject': [
+                    'a2': ['1.1.1.1', '2.2.2.2'],
+                    'b2': ['1.1.1.1', '2.2.2.2'],
+                    'c2': ['1.1.1.1', '2.2.2.2'],
+                    'd2': ['1.1.1.1', '2.2.2.2']
+            ],
+            'Cproject': [
+                    'a3': ['1.1.1.1', '2.2.2.2'],
+                    'b4': ['1.1.1.1', '2.2.2.2'],
+                    'c4': ['1.1.1.1', '2.2.2.2'],
+                    'd4': ['1.1.1.1', '2.2.2.2']
+            ]
+    ]
+
     // config app config path
-    static LinkedHashMap<String, LinkedHashMap<String, String>> appPath = [
+    final static LinkedHashMap<String, LinkedHashMap<String, String>> appPath = [
             'Aproject': [
                     'a1': '/configPath',
                     'b1': '/configPath',
@@ -34,7 +56,7 @@ class Config {
     ]
 
     // config app config file
-    static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appConfig = [
+    final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appConfig = [
             'Aproject': [
                     'a1': ['a.config', 'b.config'],
                     'b1': ['a.config', 'b.config'],
