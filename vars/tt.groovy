@@ -23,8 +23,8 @@ def call() {
                      description: 'Select app name',
                      filterLength: 1,
                      filterable: false,
-                     name: 'appName',
-                     referencedParameters: 'projectVar',
+                     name: 'AppName',
+                     referencedParameters: 'ProjectName',
                      script: [$class: 'GroovyScript',
                               fallbackScript: [
                                       classpath: [],
@@ -35,11 +35,11 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-                                            if (projectVar == 'Aproject') {
+                                            if (ProjectName == 'Aproject') {
                                                 return['q', 'w', 'e']
-                                            } else if(projectVar == 'Bproject') {
+                                            } else if(ProjectName == 'Bproject') {
                                                 return['a', 's', 'd']
-                                            } else {
+                                            } else if(ProjectName == 'Cproject') {
                                                 return['z', 'x', 'c']
                                             }
                                         """.stripIndent()
@@ -74,7 +74,7 @@ def call() {
 
 
         parameters {
-            choice(name: 'projectVar', choices: "${project}", description: 'Which project?')
+            choice(name: 'ProjectName', choices: "${project}", description: 'Which project?')
         }
 
 
