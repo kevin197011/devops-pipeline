@@ -4,6 +4,13 @@ class Config {
     // config project name
     final static ArrayList<String> projectName = ['Aproject', 'Bproject', 'Cproject']
 
+    // config project gitlab
+    final static LinkedHashMap<String, String> projectGit = [
+            'Aproject': 'https://gitlab.com/a1',
+            'Bproject': 'https://gitlab.com/b1',
+            'Cproject': 'https://gitlab.com/c1'
+    ]
+
     // config project apps
     final static LinkedHashMap<String, ArrayList<String>> appName = [
             'Aproject': ['a1', 'b1', 'c1', 'd1'],

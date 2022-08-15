@@ -94,6 +94,14 @@ def call() {
                 }
             }
 
+            stage('deploy app') {
+                steps {
+                    script {
+                        // TODO
+                    }
+                }
+            }
+
             stage('deploy config then restart') {
                 steps {
                     script {
