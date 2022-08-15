@@ -37,11 +37,11 @@ def call() {
                                                     classpath: [],
                                                     sandbox  : true,
                                                     script   : """
-                                            if (ProjectName == 'YZ') {
+                                            if (ProjectName == 'yz') {
                                                 return['kllm', 'b1', 'c1', 'd1']
-                                            } else if(ProjectName == 'XX') {
+                                            } else if(ProjectName == 'xx') {
                                                 return['a2', 'b2', 'c2', 'd2']
-                                            } else if(ProjectName == 'YY') {
+                                            } else if(ProjectName == 'yy') {
                                                 return['a3', 'b4', 'c4', 'd4']
                                             }
                                         """.stripIndent()

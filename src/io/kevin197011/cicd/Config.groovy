@@ -2,37 +2,37 @@ package io.kevin197011.cicd
 
 class Config {
     // project name
-    final static ArrayList<String> projectName = ['YZ', 'XX', 'YY']
+    final static ArrayList<String> projectName = ['yz', 'xx', 'yy']
 
     // project gitlab
     final static LinkedHashMap<String, String> projectGit = [
-            'YZ': 'https://gitlab.com/a1',
-            'PYQ': 'https://gitlab.com/b1',
-            'ZH': 'https://gitlab.com/c1'
+            'yz': 'https://gitlab.com/a1',
+            'xx': 'https://gitlab.com/b1',
+            'yy': 'https://gitlab.com/c1'
     ]
 
     // project app
     final static LinkedHashMap<String, ArrayList<String>> appName = [
-            'YZ': ['kllm', 'b1', 'c1', 'd1'],
-            'XX': ['a2', 'b2', 'c2', 'd2'],
-            'YY': ['a3', 'b4', 'c4', 'd4']
+            'yz': ['kllm', 'b1', 'c1', 'd1'],
+            'xx': ['a2', 'b2', 'c2', 'd2'],
+            'yy': ['a3', 'b4', 'c4', 'd4']
     ]
 
     // app host
     final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appHost = [
-            'YZ': [
+            'yz': [
                     'a1': ['1.1.1.1', '2.2.2.2'],
                     'b1': ['1.1.1.1', '2.2.2.2'],
                     'c1': ['1.1.1.1', '2.2.2.2'],
                     'd1': ['1.1.1.1', '2.2.2.2']
             ],
-            'PYQ': [
+            'xx': [
                     'a2': ['1.1.1.1', '2.2.2.2'],
                     'b2': ['1.1.1.1', '2.2.2.2'],
                     'c2': ['1.1.1.1', '2.2.2.2'],
                     'd2': ['1.1.1.1', '2.2.2.2']
             ],
-            'ZH': [
+            'yy': [
                     'a3': ['1.1.1.1', '2.2.2.2'],
                     'b4': ['1.1.1.1', '2.2.2.2'],
                     'c4': ['1.1.1.1', '2.2.2.2'],
