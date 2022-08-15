@@ -11,8 +11,6 @@ def call() {
 
     def project = Config.projectName.join('\n')
 //    def appName = Config.appName
-    def appPath = Config.appPath
-    def appConfig = Config.appConfig
 
     def gitlab = new Gitlab(script: this)
     def database = new DeployDatabase('t1', 'localhost', 'deploy', 'devops', '123456')
