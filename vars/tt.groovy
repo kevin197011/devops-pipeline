@@ -15,6 +15,47 @@ def call() {
     def database = new DeployDatabase('t1', 'localhost', 'tt', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
 
+
+
+    environments = 'lab\nstage\npro'
+
+    properties([
+            parameters([
+                    [$class: 'CascadeChoiceParameter',
+                     choiceType: 'PT_SINGLE_SELECT',
+                     description: 'Select a choice',
+                     filterLength: 1,
+                     filterable: true,
+                     name: 'choice1',
+                     referencedParameters: 'ENVIRONMENT',
+                     script: [$class: 'GroovyScript',
+                              fallbackScript: [
+                                      classpath: [],
+                                      sandbox: true,
+                                      script: 'return ["ERROR"]'
+                              ],
+                              script: [
+                                      classpath: [],
+                                      sandbox: true,
+                                      script: """
+                        if (ENVIRONMENT == 'lab') { 
+                            return['aaa','bbb']
+                        }
+                        else {
+                            return['ccc', 'ddd']
+                        }
+                    """.stripIndent()
+                              ]
+                     ]
+                    ]
+            ])
+    ])
+
+
+
+
+
+
     //pipeline
     pipeline {
         agent any
@@ -34,43 +75,12 @@ def call() {
 //        }
 
 
+        parameters {
+            choice(name: 'ENVIRONMENT', choices: "${environments}")
+        }
+
+
         stages {
-
-
-
-            stage('params test') {
-                steps {
-                    script {
-                        properties([
-                                [$class: 'ChoiceParameter',
-                                 choiceType: 'PT_SINGLE_SELECT',
-                                 description: 'Select the Environemnt from the Dropdown List',
-                                 filterLength: 1,
-                                 filterable: false,
-                                 name: 'Env',
-                                 script: [
-                                         $class: 'GroovyScript',
-                                         fallbackScript: [
-                                                 classpath: [],
-                                                 sandbox: false,
-                                                 script:
-                                                         "return ['Could not get The environemnts']"
-                                         ],
-                                         script: [
-                                                 classpath: [],
-                                                 sandbox: false,
-                                                 script: """
-                                                         return project
-                                                         """
-                                         ]
-                                 ]
-                                ],
-                        ])
-                    }
-                }
-            }
-
-
 
             stage('git clone item') {
                 steps {
