@@ -12,7 +12,7 @@ def call() {
     def appPath = Config.appPath
     def appConfig = Config.appConfig
 
-    def database = new DeployDatabase('t1', 'localhost', 'tt', 'devops', '123456')
+    def database = new DeployDatabase('t1', 'localhost', 'deploy', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
 
 
@@ -76,36 +76,27 @@ def call() {
                 }
             }
 
-//            stage('deploy database') {
-//                steps {
-//                    script {
-//                        if (params.DeployDatabase) {
-//                            def val = database.execute()
-//                            if (val) {
-//                                println("sql execute succeed!")
-//                            } else {
-//                                error("sql execute error!")
-//                            }
-//                        } else {
-//                            println("deploy database skip...")
-//                        }
-//                    }
-//                }
-//            }
-
-//            stage('deploy app') {
-//                steps {
-//                    script {
-//                        print("project => ${params.project}")
-//                        print("appName => ${params.appName}")
-//                    }
-//                }
-//            }
+            stage('deploy database') {
+                steps {
+                    script {
+                        if (params.DeployDatabase) {
+                            def val = database.execute()
+                            if (val) {
+                                println("sql execute succeed!")
+                            } else {
+                                error("sql execute error!")
+                            }
+                        } else {
+                            println("deploy database skip...")
+                        }
+                    }
+                }
+            }
 
             stage('deploy config then restart') {
                 steps {
                     script {
-                        sleep(1)
+                        // TODO
                     }
                 }
             }
@@ -113,7 +104,7 @@ def call() {
             stage('check list') {
                 steps {
                     script {
-                        sleep(1)
+                        // TODO
                     }
                 }
             }

@@ -9,7 +9,7 @@ https://github.com/jenkinsci/pipeline-examples
 
 @Library('devops-lib@master') _
 
-hello()
+deploy()
 
 ```
 
