@@ -38,14 +38,14 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-                                            import io.kevin197011.cicd.Config
-                                            def def appName = Config.appName
+//                                            import io.kevin197011.cicd.Config
+//                                            def def appName = Config.appName
 //                                            return appName.get("${projectVar}")
 
                                             if (projectVar == 'Aproject') {
-                                                return ['q', 'w', 'e']
+                                                return['q', 'w', 'e']
                                             } else {
-                                                return ['a', 's', 'd']
+                                                return['a', 's', 'd']
                                             }
                                         """.stripIndent()
                               ]
@@ -79,7 +79,7 @@ def call() {
 
 
         parameters {
-            choice(name: 'projectVar', choices: "${project}")
+            choice(name: 'projectVar', choices: "${project}", description: 'Which project?')
         }
 
 
