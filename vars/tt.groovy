@@ -40,7 +40,13 @@ def call() {
                                       script: """
                                             import io.kevin197011.cicd.Config
                                             def def appName = Config.appName
-                                            return appName.get("${projectVar}")
+//                                            return appName.get("${projectVar}")
+
+                                            if (projectVar == 'Aproject') {
+                                                return ['q', 'w', 'e']
+                                            } else {
+                                                return ['a', 's', 'd']
+                                            }
                                         """.stripIndent()
                               ]
                      ]
