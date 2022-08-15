@@ -68,7 +68,7 @@ def call() {
             string(name: 'Host', defaultValue: 'None', trim: true, description: 'Host')
             choice(name: 'ProjectName', choices: "${project}", description: 'Which project?')
             booleanParam(name: 'DeployDB', defaultValue: false, description: 'sure?')
-            booleanParam(name: 'UpdateJob', defaultValue: True, description: 'UpdateJob?')
+            booleanParam(name: 'UpdateJob', defaultValue: true, description: 'UpdateJob?')
         }
 
 
