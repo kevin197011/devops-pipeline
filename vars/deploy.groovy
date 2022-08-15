@@ -4,6 +4,8 @@
 import io.kevin197011.cicd.Config
 import io.kevin197011.cicd.Gitlab
 import io.kevin197011.cicd.DeployDatabase
+import io.kevin197011.cicd.DeployApp
+import io.kevin197011.cicd.DeployConfig
 
 def call() {
 
@@ -12,8 +14,10 @@ def call() {
     def appPath = Config.appPath
     def appConfig = Config.appConfig
 
-    def database = new DeployDatabase('t1', 'localhost', 'deploy', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
+    def database = new DeployDatabase('t1', 'localhost', 'deploy', 'devops', '123456')
+    def deployApp = new DeployApp(script: this)
+    def deployConfig = new DeployConfig(script: this)
 
 
     properties([
@@ -62,6 +66,8 @@ def call() {
         }
 
         parameters {
+            string(name: 'GitRepo', defaultValue: 'None', trim: true, description: 'GitRepo')
+            string(name: 'Host', defaultValue: 'None', trim: true, description: 'Host')
             choice(name: 'ProjectName', choices: "${project}", description: 'Which project?')
             booleanParam(name: 'DeployDB', defaultValue: false, description: 'sure?')
         }
@@ -72,43 +78,46 @@ def call() {
             stage('git clone item') {
                 steps {
                     script {
-                        gitlab.cloneItem('https://github.com/kevin197011/chatOps.git', 'master')
+//                        gitlab.cloneItem('https://github.com/kevin197011/chatOps.git', 'master')
+                        gitlab.cloneItem(params.GitRepo, 'master')
                     }
                 }
             }
 
-//            stage('deploy database') {
-//                steps {
-//                    script {
-//                        if (params.DeployDB) {
-//                            def val = database.execute()
-//                            if (val) {
-//                                println("sql execute succeed!")
-//                            } else {
-//                                error("sql execute error!")
-//                            }
-//                        } else {
-//                            println("deploy db skip...")
-//                        }
-//                    }
-//                }
-//            }
+            stage('deploy database') {
+                steps {
+                    script {
+                        if (params.DeployDB) {
+                            def val = database.execute()
+                            if (val) {
+                                println("sql execute succeed!")
+                            } else {
+                                error("sql execute error!")
+                            }
+                        } else {
+                            println("deploy db skip...")
+                        }
+                    }
+                }
+            }
 
-//            stage('deploy app') {
-//                steps {
-//                    script {
-//                        // TODO
-//                    }
-//                }
-//            }
+            stage('deploy app') {
+                steps {
+                    script {
+                        deployApp.deploy(params.ProjectName, params.AppName, params.Host)
+                        println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app!")
+                    }
+                }
+            }
 
-//            stage('deploy config then restart') {
-//                steps {
-//                    script {
-//                        // TODO
-//                    }
-//                }
-//            }
+            stage('deploy config then restart') {
+                steps {
+                    script {
+                        deployConfig.deploy(params.ProjectName, params.AppName, params.Host)
+                        println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart!")
+                    }
+                }
+            }
 //
 //            stage('check list') {
 //                steps {
