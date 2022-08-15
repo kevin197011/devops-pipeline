@@ -7,7 +7,7 @@ import io.kevin197011.cicd.DeployDatabase
 
 def call() {
 
-    def project = Config.project
+    def project = Config.project.join('\n')
     def appName = Config.appName
     def appPath = Config.appPath
     def appConfig = Config.appConfig
@@ -15,11 +15,11 @@ def call() {
     def database = new DeployDatabase('t1', 'localhost', 'tt', 'devops', '123456')
     def gitlab = new Gitlab(script: this)
 
+    def var1 = ['a', 'b', 'c']
+    def var2 = ['d', 'e', 'f']
+    def var3 = ['g', 'h', 'i']
 
-
-    environments = 'lab\nstage\npro'
-
-    properties([
+    def properties([
             parameters([
                     [$class: 'CascadeChoiceParameter',
                      choiceType: 'PT_SINGLE_SELECT',
@@ -27,7 +27,7 @@ def call() {
                      filterLength: 1,
                      filterable: true,
                      name: 'choice1',
-                     referencedParameters: 'ENVIRONMENT',
+                     referencedParameters: 'projectVar',
                      script: [$class: 'GroovyScript',
                               fallbackScript: [
                                       classpath: [],
@@ -38,13 +38,14 @@ def call() {
                                       classpath: [],
                                       sandbox: true,
                                       script: """
-                        if (ENVIRONMENT == 'lab') { 
-                            return['aaa','bbb']
-                        }
-                        else {
-                            return['ccc', 'ddd']
-                        }
-                    """.stripIndent()
+                                            if (projectVar == 'projectA') { 
+                                                return ${var1}
+                                            } else if (projectVar == 'projectB') {
+                                                return ${var2}
+                                            } else {
+                                                return ${var3}
+                                            }
+                                        """.stripIndent()
                               ]
                      ]
                     ]
@@ -76,7 +77,7 @@ def call() {
 
 
         parameters {
-            choice(name: 'ENVIRONMENT', choices: "${environments}")
+            choice(name: 'projectVar', choices: "${project}")
         }
 
 
