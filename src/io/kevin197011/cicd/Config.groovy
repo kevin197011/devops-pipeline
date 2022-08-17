@@ -2,24 +2,24 @@ package io.kevin197011.cicd
 
 class Config {
     // project name
-    final static ArrayList<String> projectName = ['yz', 'xx', 'yy']
+    final static ArrayList<String> project = ['yz', 'xx', 'yy']
 
     // project gitlab
-    final static LinkedHashMap<String, String> projectGit = [
+    final static LinkedHashMap<String, String> git = [
             'yz': 'https://gitlab.com/a1',
             'xx': 'https://gitlab.com/b1',
             'yy': 'https://gitlab.com/c1'
     ]
 
     // project app
-    final static LinkedHashMap<String, ArrayList<String>> appName = [
+    final static LinkedHashMap<String, ArrayList<String>> app = [
             'yz': ['kllm', 'b1', 'c1', 'd1'],
             'xx': ['a2', 'b2', 'c2', 'd2'],
             'yy': ['a3', 'b4', 'c4', 'd4']
     ]
 
     // app host
-    final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appHost = [
+    final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> host = [
             'yz': [
                     'a1': ['1.1.1.1', '2.2.2.2'],
                     'b1': ['1.1.1.1', '2.2.2.2'],
@@ -41,7 +41,7 @@ class Config {
     ]
 
 //    // app config path
-//    final static LinkedHashMap<String, LinkedHashMap<String, String>> appPath = [
+//    final static LinkedHashMap<String, LinkedHashMap<String, String>> deployPath = [
 //            'YZ': [
 //                    'a1': '/configPath',
 //                    'b1': '/configPath',
@@ -63,7 +63,7 @@ class Config {
 //    ]
 
 //    // app config file
-//    final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> appConfig = [
+//    final static LinkedHashMap<String, LinkedHashMap<String, ArrayList<String>>> config = [
 //            'YZ': [
 //                    'a1': ['a.config', 'b.config'],
 //                    'b1': ['a.config', 'b.config'],

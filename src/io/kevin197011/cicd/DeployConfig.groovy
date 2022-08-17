@@ -10,14 +10,15 @@ class DeployConfig {
 //
 //    }
 
-//    void deploy(String project, String appName,String host, Map appConfig) {
-    void deploy(String project, String appName,String host) {
+//    void deploy(String project, String app,String host, Map config) {
+    void deploy(String project, String app,String host) {
 
 //        appConfig.each {
-//            script.sh("scp -vr /tmp/project/config/${project}/${appName}/config/${it.key} deploy@${host}:${it.value}")
+//            script.sh("scp -vr /tmp/project/config/${project}/${app}/config/${it.key} deploy@${host}:${it.value}")
 //        }
-        script.echo("DeployApp deploy ${project} ${appName} config in ${host}!")
-//        script.sh("bash /tmp/workspace/${project}/${appName}/scripts/deploy_config.sh ${host}")
+//        script.echo("DeployApp deploy ${project} ${app} config in ${host}!")
+//        script.sh("bash /tmp/workspace/${project}/${app}/scripts/deploy_config.sh ${host}")
+        script.sh("bash /tmp/workspace/${project}/scripts/${app}_deploy_config.sh ${host}")
 
 //        this.restart(host)
     }

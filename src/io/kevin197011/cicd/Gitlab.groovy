@@ -4,7 +4,7 @@ class Gitlab {
 
     Script script
 
-    void cloneItem(String repo, String branch = 'master') {
+    void clone(String repo, String branch = 'master') {
 
         String repoName = repo.split('/').last().toString().tokenize('.').first().toString()
         script.echo("git clone ${repoName}!")

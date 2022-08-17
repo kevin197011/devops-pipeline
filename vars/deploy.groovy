@@ -9,8 +9,8 @@ import io.kevin197011.cicd.DeployConfig
 
 def call() {
 
-    def project = Config.projectName.join('\n')
-//    def appName = Config.appName
+    def project = Config.project.join('\n')
+//    def app = Config.app
 
     def gitlab = new Gitlab(script: this)
     def database = new DeployDatabase('t1', 'localhost', 'deploy', 'devops', '123456')
@@ -82,7 +82,7 @@ def call() {
                 steps {
                     script {
 //                        gitlab.cloneItem('https://github.com/kevin197011/chatOps.git', 'master')
-                        gitlab.cloneItem(params.GitRepo, 'master')
+                        gitlab.clone(params.GitRepo, 'master')
                     }
                 }
             }
@@ -108,8 +108,8 @@ def call() {
                 steps {
                     script {
                         if (!params.UpdateJob) {
+                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app ...")
                             deployApp.deploy(params.ProjectName, params.AppName, params.Host)
-                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy app sucessed!")
                         }
                     }
                 }
@@ -119,8 +119,8 @@ def call() {
                 steps {
                     script {
                         if (!params.UpdateJob) {
+                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart ...")
                             deployConfig.deploy(params.ProjectName, params.AppName, params.Host)
-                            println("${params.ProjectName} ${params.AppName} in ${params.Host} deploy config and restart sucessed!")
                         }
                     }
                 }
