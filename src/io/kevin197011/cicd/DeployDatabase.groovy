@@ -25,7 +25,7 @@ class DeployDatabase {
     boolean execute() {
         boolean val = false
 
-        String sqlData = new File("/tmp/sql/${this.project}/t.sql").text
+        String sqlData = new File("/tmp/workspace/${this.project}/sql/t.sql").text
 
         Sql instance = Sql.newInstance("jdbc:mysql://" + this.host + ":3306/" + this.database + "?allowMultiQueries=true",
                 this.username, this.password, "com.mysql.jdbc.Driver")
