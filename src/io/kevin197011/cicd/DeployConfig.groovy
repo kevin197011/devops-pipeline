@@ -10,7 +10,7 @@ class DeployConfig {
 //
 //    }
 
-//    void deploy(String project, String app,String host, Map config) {
+//    void deploy(String project, String app, String host, Map config) {
     void deploy(String project, String app,String host) {
 
 //        appConfig.each {
